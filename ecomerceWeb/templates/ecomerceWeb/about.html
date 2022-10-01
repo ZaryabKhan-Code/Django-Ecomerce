@@ -1,0 +1,66 @@
+{% extends 'ecomerceWeb/basic.html' %}
+
+{% block title%} About Us{% endblock %}
+{% block body %}
+
+
+
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">My Awesome Cart!</h1>
+      <p></p>
+      <p><a class="btn btn-primary btn-lg" href="http://3.86.233.165:8080/" target="_blank" role="button">Learn more »</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Developer</h2>
+        <p><b>Zaryab Khan</b> is the developer behind this is project the main motive is to built this project to reduce the human interaction and make everything online and deliver to your home set. Happy Shopping</p>
+        <p><a class="btn btn-secondary" href="http://3.86.233.165:8080" target="_blank" role="button">View details »</a></p>
+      </div>
+    </div>
+    <hr>
+
+  </div> <!-- /container -->
+</main>
+
+
+
+
+
+{% endblock %}
+{% block js %}
+<script>
+console.log('working');
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('.cart').click(function(){
+console.log('clicked');
+var idstr = this.id.toString();
+console.log(idstr);
+if (cart[idstr] !=undefined){
+cart[idstr] = cart[idstr] + 1;
+}
+else
+{
+cart[idstr] = 1;
+}
+console.log(cart);
+localStorage.setItem('cart', JSON.stringify(cart));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+});
+$('#popcart').popover();
+document.getElementById("popcart").setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
+</script>
+{% endblock %}
